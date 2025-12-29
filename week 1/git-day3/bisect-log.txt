@@ -1,0 +1,14 @@
+git bisect start
+# status: waiting for both good and bad commits
+# good: [b935357268cd7c223a77f139c2e514a59aa7b1fc] this is the 4th time
+git bisect good b935357268cd7c223a77f139c2e514a59aa7b1fc
+# status: waiting for bad commit, 1 good commit known
+# bad: [0866952fc0d9372f1d148ccde4f42ca45ea75fd3] end credits on screen
+git bisect bad 0866952fc0d9372f1d148ccde4f42ca45ea75fd3
+# bad: [ede41c4439a8e6f2d59e2b3f71004afadc6ce501] this is 7th time
+git bisect bad ede41c4439a8e6f2d59e2b3f71004afadc6ce501
+# bad: [8a1d75fbf24aa0f6fb14478f40f265e38974f5f6] Priyanshu is commiting normal lines
+git bisect bad 8a1d75fbf24aa0f6fb14478f40f265e38974f5f6
+# bad: [623b3cd371e7b79a8454d46827f13a28ebfa2840] Priyanshu is introducing the bug
+git bisect bad 623b3cd371e7b79a8454d46827f13a28ebfa2840
+# first bad commit: [623b3cd371e7b79a8454d46827f13a28ebfa2840] Priyanshu is introducing the bug
