@@ -1,0 +1,30 @@
+[
+  {
+    "file": "file3.txt",
+    "operation": "chars",
+    "result": 35,
+    "timeMs": "0.03",
+    "timestamp": "2025-12-02T13:29:07.125Z"
+  },
+  {
+    "file": "file1.txt",
+    "operation": "lines",
+    "result": 6,
+    "timeMs": "0.04",
+    "timestamp": "2025-12-02T13:31:32.005Z"
+  },
+  {
+    "file": "file3.txt",
+    "operation": "chars",
+    "result": 35,
+    "timeMs": "0.03",
+    "timestamp": "2025-12-02T13:32:01.298Z"
+  },
+  {
+    "file": "fil2.txt",
+    "operation": "chars",
+    "result": 80,
+    "timeMs": "0.03",
+    "timestamp": "2025-12-02T13:32:42.874Z"
+  }
+]

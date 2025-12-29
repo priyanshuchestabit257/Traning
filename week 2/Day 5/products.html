@@ -1,0 +1,36 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone Store - Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Capstone Store</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html" class="active">Products</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="Search products...">
+            
+            <select id="sort-select">
+                <option value="default">Sort By</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+            </select>
+        </div>
+
+        <div id="product-grid" class="product-grid">
+            <p class="loading">Loading products...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

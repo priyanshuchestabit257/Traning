@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "Running pre-commit checks..."
+
+# 1️⃣ Block commit if .env exists
+if [ -f ".env" ]; then
+  echo "❌ ERROR: .env file must not be committed!"
+  exit 1
+fi
+
+# 2️⃣ Block commit if log files are tracked
+if git ls-files --error-unmatch logs/*.log > /dev/null 2>&1; then
+  echo "❌ ERROR: log files are tracked — add logs/ to .gitignore"
+  exit 1
+fi
+
+# 3️⃣ Check JS formatting using Prettier
+npx prettier --check .
+
+if [ $? -ne 0 ]; then
+  echo "❌ Prettier check failed — run: npx prettier --write ."
+  exit 1
+fi
+
+echo "✔ All checks passed!"
+

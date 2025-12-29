@@ -1,0 +1,54 @@
+[
+  {
+    "tag": "before",
+    "timestamp": "2025-12-02T09:16:15.633Z",
+    "cpuUsage": {
+      "user": 277543,
+      "system": 41931
+    },
+    "resourceUsage": {
+      "userCPUTime": 277661,
+      "systemCPUTime": 41948,
+      "maxRSS": 48148,
+      "sharedMemorySize": 0,
+      "unsharedDataSize": 0,
+      "unsharedStackSize": 0,
+      "minorPageFault": 4204,
+      "majorPageFault": 0,
+      "swappedOut": 0,
+      "fsRead": 0,
+      "fsWrite": 0,
+      "ipcSent": 0,
+      "ipcReceived": 0,
+      "signalsCount": 0,
+      "voluntaryContextSwitches": 21,
+      "involuntaryContextSwitches": 18
+    }
+  },
+  {
+    "tag": "after",
+    "timestamp": "2025-12-02T09:16:15.657Z",
+    "cpuUsage": {
+      "user": 300760,
+      "system": 41966
+    },
+    "resourceUsage": {
+      "userCPUTime": 300779,
+      "systemCPUTime": 41969,
+      "maxRSS": 51372,
+      "sharedMemorySize": 0,
+      "unsharedDataSize": 0,
+      "unsharedStackSize": 0,
+      "minorPageFault": 4278,
+      "majorPageFault": 0,
+      "swappedOut": 0,
+      "fsRead": 0,
+      "fsWrite": 0,
+      "ipcSent": 0,
+      "ipcReceived": 0,
+      "signalsCount": 0,
+      "voluntaryContextSwitches": 21,
+      "involuntaryContextSwitches": 18
+    }
+  }
+]

@@ -1,0 +1,38 @@
+body {
+  background: linear-gradient(135deg, #7b5cf0, #c084fc);
+  color: white;
+}
+
+.app {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+input {
+  background: rgba(255,255,255,0.18);
+  color: white;
+}
+
+li {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px);
+}
+
+li.done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+button {
+  background: #a855f7;
+  color: white;
+}
+
+.edit-btn {
+  background: #22d3ee;
+}
+
+.delete-btn {
+  background: #f87171;
+}

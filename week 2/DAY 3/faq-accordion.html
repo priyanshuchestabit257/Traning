@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Accordion</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .accordion-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            width: 600px;
+        }
+
+        .accordion-item {
+            margin-bottom: 10px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: #007bff;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .accordion-header h3 {
+            font-size: 16px;
+        }
+
+        .icon {
+            background: rgba(255,255,255,0.3);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .accordion-body {
+            background: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-body.open {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="accordion-container">
+    
+    <div class="accordion-item">
+        <div class="accordion-header">
+            <h3>What are the </h3>
+            <span class="icon">+</span>
+        </div>
+        <div class="accordion-body open">
+            <p>
+                random content to dislay
+            </p>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            <h3>Accordion Heading Two</h3>
+            <span class="icon">-</span>
+        </div>
+        <div class="accordion-body open">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                Siten it incidunt magnam dolore autem eligendi illum fuga 
+                laboriosam beatae ea, eum quis dignissimos tempora, unde 
+                odiosio labore porro impedit quasi. Commodi!
+            </p>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            <h3>Accordion Heading Three</h3>
+            <span class="icon">+</span>
+        </div>
+        <div class="accordion-body open">
+            <p> Same as other one</p>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header">
+            <h3>Accordion Heading Four</h3>
+            <span class="icon">+</span>
+        </div>
+        <div class="accordion-body">
+            <p></p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const items = document.querySelectorAll(".accordion-item");
+
+    items.forEach(item => {
+        const header = item.querySelector(".accordion-header");
+        const body = item.querySelector(".accordion-body");
+        const icon = item.querySelector(".icon");
+
+        header.addEventListener("click", () => {
+
+            // Close all other accordions
+            document.querySelectorAll(".accordion-body").forEach(b => {
+                if (b !== body) {
+                    b.classList.remove("open");
+                    b.previousElementSibling.querySelector(".icon").textContent = "+";
+                }
+            });
+
+            // Toggle current accordion
+            body.classList.toggle("open");
+
+            // Change icon
+            if (body.classList.contains("open")) {
+                icon.textContent = "-";
+            } else {
+                icon.textContent = "+";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
