@@ -1,0 +1,25 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev node src/index.js",
+    "prod": "cross-env NODE_ENV=prod node src/index.js",
+    "local": "cross-env NODE_ENV=local node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.2",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
+  },
+  "description": ""
+}
