@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "2a073c67-bfd8-4af7-b417-86ca1082d646",
+		"name": "postmancollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50578053",
+		"_collection_link": "https://priyanshuc-hestabit-8607336.postman.co/workspace/0658db39-868f-4933-85d5-9c0e4fdb396e/collection/50578053-2a073c67-bfd8-4af7-b417-86ca1082d646?action=share&source=collection_link&creator=50578053"
+	},
+	"item": [
+		{
+			"name": "DAY 5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"test@example.com\",\n  \"subject\": \"Welcome\",\n  \"message\": \"Hello from BullMQ\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/emails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"emails"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
