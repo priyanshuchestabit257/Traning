@@ -18,7 +18,7 @@ async function seed() {
         firstName: "John",
         lastName: "Doe",
         email: "john@example.com",
-        password: "password123", // hashed automatically
+        password: "password123", 
         status: "ACTIVE",
       },
       {

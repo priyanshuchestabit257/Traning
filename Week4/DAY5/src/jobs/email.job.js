@@ -13,10 +13,10 @@ const emailWorker = new Worker(
       requestId,
     });
 
-    // Simulate email sending
+   
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // Simulate random failure (to test retry + backoff)
+    
     if (Math.random() < 0.4) {
       throw new Error("SMTP server error");
     }
@@ -50,4 +50,4 @@ emailWorker.on("failed", (job, err) => {
   });
 });
 
-console.log("📨 Email worker is running...");
+console.log(" Email worker is running...");
