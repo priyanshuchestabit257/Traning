@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6
+    volumes:
+      - mongo-data:/data/db
+
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  
+  client:
+     build: ./client
+     ports:
+      - "3000:5173"
+     volumes:
+      - ./client:/app
+      - /app/node_modules
+     depends_on:
+      - server
+
+volumes:
+  mongo-data:
