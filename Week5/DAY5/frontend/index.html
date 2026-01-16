@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Todo App</title>
-</head>
 <body>
-  <h1> Todo App</h1>
-
-  <input id="todoInput" placeholder="New todo" />
+  <h1>Todo App</h1>
+  <input id="todo" placeholder="New todo">
   <button onclick="addTodo()">Add</button>
+  <ul id="list"></ul>
 
-  <ul id="todoList"></ul>
+<script>
+async function loadTodos() {
+  const res = await fetch('/api/todos');
+  const todos = await res.json();
+  document.getElementById('list').innerHTML =
+    todos.map(t => `<li>${t.title}</li>`).join('');
+}
 
-  <script src="app.js"></script>
+async function addTodo() {
+  const title = document.getElementById('todo').value;
+  await fetch('/api/todos', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ title })
+  });
+  loadTodos();
+}
+
+loadTodos();
+</script>
 </body>
 </html>

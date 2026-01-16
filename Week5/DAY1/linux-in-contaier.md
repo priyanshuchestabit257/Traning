@@ -5,15 +5,16 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+FROM node:20-alpine
 
-RUN npm install
+WORKDIR /app
 
-COPY . .
+COPY index.js .
 
-EXPOSE 4000
+EXPOSE 3000
 
 CMD ["node", "index.js"]
+
 
 ## 2. Exploration Results
 I entered the container using `docker exec -it mycontainer /bin/sh`.
