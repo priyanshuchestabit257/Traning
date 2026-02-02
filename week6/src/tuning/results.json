@@ -1,0 +1,11 @@
+{
+  "model": "LogisticRegression",
+  "optimization": "Optuna (Bayesian)",
+  "best_score": 0.7168214532752168,
+  "best_params": {
+    "C": 0.1712369278107756,
+    "penalty": "l1",
+    "class_weight": null
+  },
+  "n_trials": 50
+}

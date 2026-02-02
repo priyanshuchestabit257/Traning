@@ -1,0 +1,12 @@
+[
+  "payment_failures",
+  "support_tickets",
+  "avg_weekly_usage_hours",
+  "last_login_days_ago",
+  "low_usage_flag",
+  "tenure_months",
+  "payment_issue_flag",
+  "plan_type_Standard",
+  "fee_per_usage_hour",
+  "monthly_fee"
+]
