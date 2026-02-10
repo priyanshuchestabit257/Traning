@@ -24,5 +24,14 @@ async function addTodo() {
   input.value = "";
   loadTodos();
 }
+app.delete("/api/todos/:id", async (req, res) => {
+  try {
+    await Todo.findByIdAndDelete(req.params.id);
+    res.json({ message: "Todo deleted" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to delete todo" });
+  }
+});
+
 
 loadTodos();

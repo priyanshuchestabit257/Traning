@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "backend-api",
-      script: "index.js",
+      script: "../index.js",        
       instances: 1,
       autorestart: true,
       watch: false,
@@ -13,7 +13,7 @@ module.exports = {
     },
     {
       name: "email-worker",
-      script: "jobs/email.job.js",
+      script: "../jobs/email.job.js", 
       instances: 1,
       autorestart: true,
       watch: false,

@@ -12,17 +12,18 @@
 
 ## 2. Manual Security Test Cases
 
-### Test Case 1: Rate Limiting
-* **Action:** Send 101 requests within 15 minutes.
-* **Expected Result:** API returns HTTP 429 "Too many requests".
-* **Status:**  Passed
+## Helmet Security Headers
+Verified using:
+curl -I http://localhost:3000
 
-### Test Case 2: Invalid Input (Validation)
-* **Action:** Send POST `/products` with `price: "free"` (String instead of Number).
-* **Expected Result:** API returns HTTP 400 "price must be a number".
-* **Status:** Passed
+Headers present:
+- Content-Security-Policy
+- X-Frame-Options
+- X-Content-Type-Options
+- Strict-Transport-Security
 
-### Test Case 3: Large Payload Attack
-* **Action:** Send a POST request with a 5MB JSON body.
-* **Expected Result:** API returns HTTP 413 "Payload Too Large".
-* **Status:**  Passed
+## Rate Limiting
+Configured: 5 requests/min
+Verified by repeated curl requests
+Server responds with 429 after limit
+

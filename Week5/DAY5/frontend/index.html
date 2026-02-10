@@ -1,26 +1,149 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Todo App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .app {
+      background: white;
+      width: 360px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button.add {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background: #4f46e5;
+      color: white;
+      cursor: pointer;
+    }
+
+    button.add:hover {
+      background: #4338ca;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #f9fafb;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    li span {
+      word-break: break-word;
+    }
+
+    button.delete {
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button.delete:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+
 <body>
-  <h1>Todo App</h1>
-  <input id="todo" placeholder="New todo">
-  <button onclick="addTodo()">Add</button>
-  <ul id="list"></ul>
+  <div class="app">
+    <h1>Todo App</h1>
+
+    <div class="input-row">
+      <input id="todo" placeholder="Add a new task">
+      <button class="add" onclick="addTodo()">Add</button>
+    </div>
+
+    <ul id="list"></ul>
+  </div>
 
 <script>
 async function loadTodos() {
   const res = await fetch('/api/todos');
   const todos = await res.json();
-  document.getElementById('list').innerHTML =
-    todos.map(t => `<li>${t.title}</li>`).join('');
+
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  todos.forEach(t => {
+    const li = document.createElement('li');
+
+    const text = document.createElement('span');
+    text.innerText = t.title;
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'delete';
+    delBtn.innerText = 'X';
+    delBtn.onclick = () => deleteTodo(t._id);
+
+    li.appendChild(text);
+    li.appendChild(delBtn);
+    list.appendChild(li);
+  });
 }
 
 async function addTodo() {
-  const title = document.getElementById('todo').value;
+  const input = document.getElementById('todo');
+  const title = input.value.trim();
+  if (!title) return;
+
   await fetch('/api/todos', {
     method: 'POST',
-    headers: {'Content-Type':'application/json'},
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ title })
   });
+
+  input.value = '';
+  loadTodos();
+}
+
+async function deleteTodo(id) {
+  await fetch('/api/todos/' + id, { method: 'DELETE' });
   loadTodos();
 }
 

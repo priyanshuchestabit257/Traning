@@ -13,9 +13,12 @@ const TodoSchema = new mongoose.Schema({
   completed: { type: Boolean, default: false }
 });
 
+
 const Todo = mongoose.model("Todo", TodoSchema);
 
-app.get("/health", (req, res) => res.send("OK"));
+app.get("/health", (req, res) => {
+  res.send("OK");
+});
 
 app.get("/api/todos", async (req, res) => {
   const todos = await Todo.find();
@@ -23,9 +26,36 @@ app.get("/api/todos", async (req, res) => {
 });
 
 app.post("/api/todos", async (req, res) => {
-  const todo = await Todo.create(req.body);
+  const todo = await Todo.create({
+    title: req.body.title,
+    completed: false
+  });
   res.json(todo);
 });
+
+// TOGGLE completed
+app.put("/api/todos/:id", async (req, res) => {
+  const todo = await Todo.findById(req.params.id);
+  todo.completed = !todo.completed;
+  await todo.save();
+  res.json(todo);
+});
+
+// DELETE todo
+app.delete("/api/todos/:id", async (req, res) => {
+  await Todo.findByIdAndDelete(req.params.id);
+  res.json({ message: "Todo deleted" });
+});
+
+app.patch("/api/todos/:id", async (req, res) => {
+  const todo = await Todo.findByIdAndUpdate(
+    req.params.id,
+    { completed: req.body.completed },
+    { new: true }
+  );
+  res.json(todo);
+});
+
 
 app.listen(3000, () => {
   console.log("Backend running on 3000");
