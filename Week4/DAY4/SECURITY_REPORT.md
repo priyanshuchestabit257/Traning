@@ -27,3 +27,6 @@ Configured: 5 requests/min
 Verified by repeated curl requests
 Server responds with 429 after limit
 
+## NOSQL
+curl -i -X POST http://localhost:3000/products   -H "Content-Type: application/json"   -d '{"name": {"$ne": null}, "price": 100, "description": "test product", "tags": ["test"]}'
+

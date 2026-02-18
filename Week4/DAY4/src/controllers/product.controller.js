@@ -48,3 +48,16 @@ export const deleteProduct = async (req, res, next) => {
     next(err);
   }
 };
+
+export const createProduct = async (req, res, next) => {
+  try {
+    const product = await productService.createProduct(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: product,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

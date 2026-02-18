@@ -51,6 +51,8 @@ This API supports advanced querying features including dynamic search, complex f
 `GET /products?includeDeleted=true`
 
 ---
+### 4. JOI Validation
+curl -X POST http://localhost:3000/products   -H "Content-Type: application/json"   -d '{"name": 123}'
 
 ## Error Responses
 All errors follow the unified error contract:

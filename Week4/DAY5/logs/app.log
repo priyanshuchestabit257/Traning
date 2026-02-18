@@ -134,3 +134,4 @@
 {"level":"info","message":"HTTP request","method":"HEAD","requestId":"8ac7d94b-92f3-4586-899d-b144ae4488a6","responseTimeMs":1,"statusCode":429,"url":"/"}
 {"level":"info","message":"HTTP request","method":"HEAD","requestId":"ce85382f-704e-4385-90e7-eb3710bfe3f3","responseTimeMs":2,"statusCode":404,"url":"/"}
 {"level":"info","message":"HTTP request","method":"GET","requestId":"a259da7a-6fa4-4bc3-b650-5801e784ba4e","responseTimeMs":4,"statusCode":404,"url":"/"}
+{"level":"info","message":"HTTP request","method":"POST","requestId":"a79cef0a-82fb-49eb-a825-83fd3684da1c","responseTimeMs":17,"statusCode":202,"url":"/emails"}

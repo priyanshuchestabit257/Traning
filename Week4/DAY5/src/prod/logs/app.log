@@ -7,3 +7,8 @@
 {"jobId":"9","level":"info","message":"Email job started"}
 {"jobId":"9","level":"info","message":"Email job sent successfully"}
 {"jobId":"9","level":"info","message":"Email job completed"}
+{"jobId":"11","level":"info","message":"Email job started"}
+{"level":"info","message":"HTTP request","method":"POST","requestId":"7560e235-c211-47d1-b40c-fda8445365fa","responseTimeMs":15,"statusCode":202,"url":"/emails"}
+{"jobId":"11","level":"info","message":"Email job sent successfully"}
+{"jobId":"11","level":"info","message":"Email job completed"}
+{"level":"info","message":"HTTP request","method":"POST","requestId":"49e76f54-d56e-4e22-9dbd-a63030c9649a","responseTimeMs":1,"statusCode":202,"url":"/emails"}

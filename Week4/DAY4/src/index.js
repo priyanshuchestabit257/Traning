@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { limiter, corsPolicy, securityHeaders } from "./middlewares/security.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
-import { getProducts } from "./controllers/product.controller.js";
+import productRoutes from "./routes/product.routes.js";
 
 const app = express();
 
@@ -20,7 +20,8 @@ app.use(corsPolicy);
 app.use(limiter);
 
 // Routes
-app.use("/products", getProducts);
+app.use("/products", productRoutes);
+
 
 // Error handling middleware (should be last)
 app.use(errorMiddleware);

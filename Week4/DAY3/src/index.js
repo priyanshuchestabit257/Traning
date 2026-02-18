@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import productRoutes from "./routes/product.routes.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
+import accountRoutes from "./routes/account.routes.js";
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,8 +17,11 @@ app.use(express.json());
 // routes
 app.use("/products", productRoutes);
 
+app.use("/accounts", accountRoutes);
+
 // error handler (ALWAYS LAST)
 app.use(errorMiddleware);
+
 
 // connect DB + start server
 mongoose
