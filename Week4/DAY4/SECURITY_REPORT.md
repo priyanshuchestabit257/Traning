@@ -1,4 +1,4 @@
-# API Security Implementation Report
+
 
 ## 1. Implemented Defenses
 

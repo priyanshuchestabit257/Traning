@@ -13,7 +13,7 @@ class HybridRetriever:
         self.reranker = CosineReranker()
 
         # Load FAISS
-        self.index = faiss.read_index("src/vectorstore/index.faiss")
+        self.index = faiss.read_index("src/vectorstore/faiss.index")
 
         # Load stored chunks
         self.chunks = []

@@ -33,6 +33,7 @@ async function seed() {
     console.log("Accounts created");
 
     // Create orders
+    // Create orders
     const orders = await Order.insertMany([
       {
         accountId: accounts[0]._id,
@@ -54,6 +55,13 @@ async function seed() {
           { productName: "Product C", price: 1000, quantity: 3 },
         ],
         status: "PAID",
+      },
+      {
+        accountId: accounts[1]._id,
+        items: [
+          { productName: "Product D", price: 200, quantity: 1 },
+        ],
+        status: "CANCELLED",
       },
     ]);
 

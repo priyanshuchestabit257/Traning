@@ -36,7 +36,8 @@ def create_features(df):
     df.drop(columns=["signup_date"], inplace=True)
 
     # --- Usage behavior ---
-    df["low_usage_flag"] = (df["avg_weekly_usage_hours"] < 5).astype(int)
+    THRESHOLD = 5.0 
+    df["low_usage_flag"] = (df["avg_weekly_usage_hours"] < THRESHOLD).astype(int)
     df["inactive_flag"] = (df["last_login_days_ago"] > 30).astype(int)
 
     # --- Financial stress ---
@@ -122,7 +123,7 @@ def run_pipeline():
 
     save_outputs(X_train_df, X_test_df, y_train, y_test, feature_names)
 
-    print("✅ Day 2 completed with dataset-specific features")
+    print("Day 2 completed with dataset-specific features")
     print(f"Total features: {len(feature_names)}")
 
 

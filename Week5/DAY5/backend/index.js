@@ -16,7 +16,7 @@ const TodoSchema = new mongoose.Schema({
 
 const Todo = mongoose.model("Todo", TodoSchema);
 
-app.get("/health", (req, res) => {
+app.get("/api/health", (req, res) => {
   res.send("OK");
 });
 

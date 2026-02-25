@@ -1,4 +1,4 @@
-# Week 6 – ML Deployment & Monitoring (Churn Prediction)
+
 
 ## 📌 Overview
 This project builds, tunes, and deploys a Customer Churn Prediction model as a production-ready API.

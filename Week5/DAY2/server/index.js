@@ -5,8 +5,7 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 
-mongoose
-  .connect("mongodb://mongo:27017/day2db")
+mongoose.connect("mongodb://day2-mongo-1:27017/day2db")
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error(err));
 

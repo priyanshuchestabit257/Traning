@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-
+import faiss
 from src.embeddings.embedder import BGEEmbedder
 from src.utils.loader import load_document
 from src.utils.chunker import chunk_docs
@@ -69,11 +69,12 @@ def ingest():
     limited_chunks = all_chunks[:MAX_EMBED_CHUNKS]
 
     texts = [chunk.page_content for chunk in limited_chunks]
-    embeddings = embedder.embed(texts)
+    embeddings = embedder.embed(texts).astype("float32")
+    faiss.normalize_L2(embeddings)
 
     # FAISS store
     store = FaissStore(dim=embeddings.shape[1])
-    store.add(embeddings)
+    store.add(embeddings, chunks)
     store.save()
 
     print("\nINGESTION SUMMARY")

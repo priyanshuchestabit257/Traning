@@ -26,10 +26,16 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-/* 🔹 Compound Index */
 orderSchema.index({ status: 1, createdAt: -1 });
 
-/* 🔹 Pre-save Hook (compute total) */
+orderSchema.index(
+  { createdAt: 1 },
+  { 
+    expireAfterSeconds: 2592000, 
+    partialFilterExpression: { status: "CANCELLED" } 
+  }
+);
+
 orderSchema.pre("save", function (next) {
   this.totalAmount = this.items.reduce(
     (sum, item) => sum + item.price * item.quantity,

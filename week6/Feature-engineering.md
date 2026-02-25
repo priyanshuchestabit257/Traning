@@ -77,9 +77,7 @@ The trained model expects the following features:
 - plan_type_Premium
 - plan_type_Standard
 
-⚠️ These features must be generated both:
-- During training
-- During inference (API layer)
+
 
 Failure to maintain consistency causes feature mismatch errors.
 

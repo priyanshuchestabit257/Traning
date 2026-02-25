@@ -19,7 +19,7 @@ if __name__ == "__main__":
     qe = QueryEngine()
 
     while True:
-        query = input("\n🔍 Enter query (or type 'exit'): ").strip()
+        query = input("\n Enter query (or type 'exit'): ").strip()
         if query.lower() == "exit":
             print("Exiting Query Engine")
             break

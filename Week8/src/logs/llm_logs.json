@@ -1,0 +1,8 @@
+{"time": "2026-02-24T13:33:53.685794", "level": "INFO", "message": "chat_start", "request_id": "bb48587a-48f7-486f-854f-1fc0d4e71f19", "endpoint": "/chat"}
+{"time": "2026-02-24T13:33:53.687837", "level": "INFO", "message": "stream_start", "request_id": "bb48587a-48f7-486f-854f-1fc0d4e71f19", "endpoint": "stream"}
+{"time": "2026-02-24T13:34:06.872435", "level": "INFO", "message": "chat_complete", "request_id": "bb48587a-48f7-486f-854f-1fc0d4e71f19", "endpoint": "/chat"}
+{"time": "2026-02-24T13:34:37.254407", "level": "INFO", "message": "generate_start", "request_id": "333a060b-d566-494e-b22f-600ce3c4dae1", "endpoint": "/generate"}
+{"time": "2026-02-24T13:34:37.255165", "level": "INFO", "message": "stream_start", "request_id": "333a060b-d566-494e-b22f-600ce3c4dae1", "endpoint": "stream"}
+{"time": "2026-02-24T13:48:03.483501", "level": "INFO", "message": "chat_start", "request_id": "584b2f1a-6ee2-42ad-a76e-7b00bcc870ce", "endpoint": "/chat"}
+{"time": "2026-02-24T13:48:03.485196", "level": "INFO", "message": "stream_start", "request_id": "584b2f1a-6ee2-42ad-a76e-7b00bcc870ce", "endpoint": "stream"}
+{"time": "2026-02-24T13:48:12.369956", "level": "INFO", "message": "chat_complete", "request_id": "584b2f1a-6ee2-42ad-a76e-7b00bcc870ce", "endpoint": "/chat"}

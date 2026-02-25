@@ -10,6 +10,13 @@ app.get("/api", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Container running",
+    status:200
+  });
+});
+
 app.listen(3000, () => {
   console.log("Backend running on port 3000");
 });
