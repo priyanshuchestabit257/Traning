@@ -87,22 +87,6 @@ Disk usage was measured using:
 |---|---|
 | GGUF q8_0 | 7.7 tokens/sec |
 
-### Some screenshots that were observed during implementation
-- ####  FP16
-
-![](images/s6fp16.png)
-
-- #### INT4
-
-![](images/s4-int4.png) 
-
-- #### INT8
-
-![](images/s5-int8.png) 
-
-- #### GGUF (q8_0)
-
-![](images/s3-gguf.png)
 
 
 ### Observations

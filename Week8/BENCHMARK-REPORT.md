@@ -57,19 +57,15 @@ was used as the accuracy score.
 
 ## 3. Benchmark Results
 
-| Model | Tokens/sec | Latency | VRAM | Accuracy |
-|---|---|---|---|---|
-| base | 57.46 | 2.48s | 2.88 GB | 0.798 |
-| fp16 | 49.74 | 2.87s | 2.88 GB | 0.798 |
-| int8 | 14.01 | 10.20s | 1.59 GB | 0.804 |
-| int4 | 13.33 | 5.69s | 1.21 GB | 0.759 |
-| gguf | 5.18 | 27.96s | 0 | 0.698 |
+Model,  Tokens/sec,     Latency,             VRAM,                   Accuracy
+base,  57.93352040220255,  2.485607624053955,  3.011847496032715,   0.7974905967712402
+fp16,  63.02271617176352,  2.2848904132843018, 3.0118494033813477,  0.7974905967712402
+int8,  14.686239563736551, 10.009369611740112, 1.5887093544006348,  0.7999388575553894
+int4,  27.84108085797168,  5.136294841766357,  1.233870506286621,   0.7969040870666504
+gguf,  4.970343632756859,  38.427926540374756, 0,                   0.7317503690719604
 
-- Real time work
 
-![](images/s7Benchmark.png)
 
----
 
 ## 4. Explanation in Simple Terms
 
@@ -118,11 +114,11 @@ GGUF:
 
 Accuracy values represent semantic similarity (0 to 1 scale).
 
-Base Model: 0.798  
-Fine-Tuned Model: 0.798  
-INT8 Model: 0.804  
-INT4 Model: 0.759  
-GGUF Model: 0.698  
+Base Model: 0.7974  
+Fine-Tuned Model: 0.797 
+INT8 Model: 0.799  
+INT4 Model: 0.796  
+GGUF Model: 0.731 
 
 Observations:
 
