@@ -4,3 +4,4 @@ data
 index.faiss
 quantized
 llama.cpp
+model

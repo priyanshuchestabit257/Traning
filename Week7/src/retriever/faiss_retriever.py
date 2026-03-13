@@ -1,20 +1,21 @@
-import faiss
 import json
 from pathlib import Path
+import numpy as np
+import faiss
+
 from src.embeddings.embedder import BGEEmbedder
 from src.vectorstore.faiss_store import FaissStore
-import numpy as np
-
 
 
 CHUNKS_DIR = Path("src/data/chunks")
 
 embedder = BGEEmbedder()
 
+# Initialize FAISS store (auto loads index)
 store = FaissStore(dim=768)
-store.load()
 
-# Load all chunks
+
+# Load all chunks (optional depending on your pipeline)
 all_chunks = []
 for file in CHUNKS_DIR.glob("*.jsonl"):
     with open(file, "r", encoding="utf-8") as f:
@@ -23,12 +24,10 @@ for file in CHUNKS_DIR.glob("*.jsonl"):
 
 
 def retrieve(query, k=3):
-    embedder = BGEEmbedder()
-    store = FaissStore(dim=768)
 
     query_embedding = embedder.embed_query(query)
 
-    import faiss
+    # Normalize for cosine similarity
     faiss.normalize_L2(query_embedding)
 
     distances, indices = store.index.search(query_embedding, k)

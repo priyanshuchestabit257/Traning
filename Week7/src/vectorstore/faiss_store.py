@@ -3,7 +3,6 @@ import pickle
 import numpy as np
 from pathlib import Path
 
-
 VECTOR_DIR = Path("src/vectorstore")
 VECTOR_DIR.mkdir(parents=True, exist_ok=True)
 

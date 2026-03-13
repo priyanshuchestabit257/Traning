@@ -94,18 +94,12 @@ Token statistics computed from the training dataset:
 
 ---
 
-## 6. Distribution Analysis
 
-Token distribution graphs were generated:
 
-- `token_distribution.png`
-- `instruction_distribution.png`
-
-These graphs confirm that most samples fall within a stable token range, with no extreme outliers after filtering.
 
 ---
 
-## 7. Dataset Suitability for Fine-Tuning
+## 6. Dataset Suitability for Fine-Tuning
 
 Based on analysis:
 
@@ -120,12 +114,12 @@ Based on analysis:
 
 - Stable gradient updates
 - Faster convergence
-- Lower VRAM consumption
+- Lower V#RAM consumption
 - Better generalization during instruction tuning
 
 ---
 
-## 8. Conclusion
+## 7. Conclusion
 
 The dataset is clean, curated, and optimized for instruction-based fine-tuning.  
 Token length constraints and outlier removal ensure compatibility with Colab-friendly models such as TinyLlama, Phi, and Qwen.
