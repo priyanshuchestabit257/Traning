@@ -1,79 +1,151 @@
+
 import asyncio
 import os
+import re
+
 from autogen_ext.models.llama_cpp import LlamaCppChatCompletionClient
 
-# Import your custom agents/tools
-from tools.file_executor import file_executor
-from tools.db_executor import db_agent
 from tools.code_executor import code_executor
+from tools.file_executor import file_executor
+from tools.db_executor import db_agent, SQLiteDBTools
+
+
+def extract_sql(response_text: str):
+    matches = re.findall(r'execute_query\(["\'](.+?)["\']\)', response_text)
+
+    for sql in matches:
+        if "get_db_tables" not in sql and "inspect_table_schema" not in sql:
+            return sql
+
+    raw_sql_match = re.search(r"(SELECT .*?)(?:;|\n|$)", response_text, re.IGNORECASE)
+
+    if raw_sql_match:
+        return raw_sql_match.group(1)
+
+    return None
+
+
+def clean_sql(sql: str) -> str:
+    sql = sql.strip()
+    sql = re.sub(r"''([^']+)''", r"'\1'", sql)
+    sql = sql.replace("`", "")
+    return sql
+
 
 async def main():
-    # 1. Setup Absolute Paths for the Local Model
+
     base_path = os.path.dirname(os.path.abspath(__file__))
-    model_filename = "Phi-3-mini-4k-instruct-Q4_K_M.gguf"
-    model_path = os.path.join(base_path, "model", model_filename)
-    
+    model_path = os.path.join(base_path, "model", "Phi-3-mini-4k-instruct-Q4_K_M.gguf")
+
     if not os.path.exists(model_path):
-        print(f"ERROR: Model not found at {model_path}")
+        print("ERROR: Model not found.")
         return
 
-    print(f"--- Loading Local Model: {model_filename} ---")
-    
-    # Initialize the local client
+    print("\n--- Loading Local Model: Phi-3-mini-4k-instruct-Q4_K_M.gguf ---")
+
     client = LlamaCppChatCompletionClient(
         model_path=model_path,
         n_ctx=4096,
         verbose=False
     )
 
-    # 2. Initialize the DB Agent (Specialist)
-    customer_db_agent = db_agent(name="DB_Specialist", model_client=client)
+    db_agent_instance = db_agent(name="DB_Specialist", model_client=client)
+
+    db_path = "/home/priyanshurajchauhan/Desktop/Traning/Week7/src/data/sql/customers.db"
+    db_tools = SQLiteDBTools(db_path)
 
     print("\n=========================================")
-    print("--- DAY 3: MULTI-AGENT LOCAL SYSTEM ---")
+    print("---- DAY 3: MULTI AGENT LOCAL SYSTEM ----")
     print("=========================================\n")
 
     while True:
+
         try:
+
             user_query = input("User Request (or 'exit'): ")
+
             if user_query.lower() in ["exit", "quit"]:
                 break
+
             if not user_query.strip():
                 continue
 
             query_lower = user_query.lower()
 
-            # --- ROUTING LOGIC (STRICT INDENTATION) ---
+            db_keywords = ["customer", "database", "table", "sql", "data"]
+            code_keywords = ["code", "python", "script", "calculate", "factorial", "math"]
+            file_keywords = ["file", "folder", "directory", "list files", "ls"]
 
-            # A. Check DB Keywords
-            db_keywords = ["db", "customer", "table", "sql", "data", "select", "insert"]
             if any(word in query_lower for word in db_keywords):
+
                 print("\n[Action] Routing to DB Agent...")
-                result = await customer_db_agent.run(task=user_query)
-                final_response = result.messages[-1].content
 
-            # B. Check Code Keywords
-            elif any(word in query_lower for word in ["code", "script", "factorial", "calculate", "python", "math", "def "]):
-                print("\n[Action] Routing to Code Agent...")
-                final_response = await code_executor(user_query, client)
+                result = await db_agent_instance.run(task=user_query)
 
-            # C. Check File Keywords
-            elif any(word in query_lower for word in ["file", "directory", "folder", "list files", "ls"]):
-                print("\n[Action] Routing to File Agent...")
-                final_response = await file_executor(user_query, client)
+                response_text = result.messages[-1].content
+                response_text = response_text.replace("```sql", "").replace("```", "").strip()
 
-            # D. Fallback to General Reasoning
+                print("[Model Output]:", response_text)
+
+                sql = extract_sql(response_text)
+
+                if sql:
+                    sql = clean_sql(sql)
+
+                    print("\n[Executing SQL]:", sql)
+
+                    db_result = db_tools.execute_query(sql)
+
+                    if "rows" in db_result:
+
+                        print("\n[Database Result]:")
+
+                        for row in db_result["rows"]:
+                            print(row)
+
+                        print(f"\n[Returned Rows]: {db_result['row_count']}")
+
+                    else:
+                        print(db_result)
+
+                else:
+                    print("\n[Response]:", response_text)
+
+            elif any(word in query_lower for word in code_keywords):
+
+                print("\n[Action] Routing to Code Executor...")
+
+                response = await code_executor(user_query, client)
+
+                print("\n[Response]:", response)
+
+            elif any(word in query_lower for word in file_keywords):
+
+                print("\n[Action] Routing to File Executor...")
+
+                response = await file_executor(user_query, client)
+
+                print("\n[Response]:", response)
+
             else:
-                print("\n[Action] General Reasoning...")
-                # Raw dictionary for LlamaCpp compatibility
-                raw_msg = {"role": "user", "content": user_query}
-                response = await client.create(messages=[raw_msg])
-                final_response = response.content
 
-            print(f"\n[Response]: {final_response}\n" + "-"*50)
+                print("\n[Action] General Reasoning...")
+
+                messages = [{"role": "user", "content": user_query}]
+
+                response = await client.create(messages=messages)
+
+                if hasattr(response, "content"):
+                    print("\n[Response]:", response.content)
+                else:
+                    print("\n[Response]:", response)
+
+            print("\n" + "-" * 60)
 
         except Exception as e:
-            print(f"\n[System Error]: {str(e)}\n")
+            print("\n[System Error]:", str(e))
+
 
 if __name__ == "__main__":
     asyncio.run(main())
+

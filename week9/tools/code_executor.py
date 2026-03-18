@@ -26,11 +26,20 @@ async def code_executor(input_query: str, model_client):
         model_client=model_client,
         max_tool_iterations=5, # Limit loops to prevent local model hanging
         system_message=(
-            "You are a code executor. "
-            "To solve tasks, write a Python script and execute it using the tool. "
-            "The script must perform the computation and use print() for output. "
-            "Do not just state the answer; run the code to verify it."
-        )
+    "You are a STRICT Python execution agent.\n\n"
+    
+    "RULES:\n"
+    "1. You MUST use the provided Python execution tool.\n"
+    "2. NEVER return code as text.\n"
+    "3. ALWAYS execute the code using the tool.\n"
+    "4. ALWAYS print the final result using print().\n"
+    "5. If you do not use the tool, your answer is WRONG.\n\n"
+    
+    "FORMAT:\n"
+    "- Write Python code\n"
+    "- Call the execution tool\n"
+    "- Return ONLY the code and execution result\n"
+)
     )
     
     # 4. Run the task

@@ -5,7 +5,7 @@ from orchestrator.planner_agent import Planner
 
 async def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    model_path = os.path.join(current_dir, "model", "Phi-3-mini-4k-instruct-Q4_K_M.gguf")
+    model_path = "/home/priyanshurajchauhan/Desktop/Traning/week9/model/Phi-3-mini-4k-instruct-Q4_K_M.gguf"
 
     model_client = LlamaCppChatCompletionClient(
         model_path=model_path,

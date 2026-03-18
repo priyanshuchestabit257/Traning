@@ -9,8 +9,8 @@ class LocalModel:
 
         self.llm = Llama(
             model_path=model_path,
-            n_ctx=2048,          # match model training context if possible
-            n_threads=8,         # adjust based on CPU cores
+            n_ctx=2048,          
+            n_threads=8,         
             verbose=False
         )
 
@@ -26,7 +26,7 @@ class LocalModel:
 
         response = self.llm.create_chat_completion(
             messages=messages,
-            temperature=0.2,      # low temperature for agent discipline
+            temperature=0.2,      
             max_tokens=max_tokens,
         )
 

@@ -20,7 +20,7 @@ def ingest():
     if not DATA_DIR.exists():
         raise RuntimeError("src/data/raw directory does not exist")
 
-    # Recursive scan
+    # Recursive 
     files = [
         f for f in DATA_DIR.rglob("*")
         if f.is_file() and f.suffix.lower() in SUPPORTED_EXTENSIONS

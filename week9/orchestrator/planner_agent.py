@@ -155,8 +155,13 @@ class Planner:
                 del pending[node_id]
 
         # Return the output of the Validator node as the final answer
-        final_node_id = next(n.id for n in nodes if n.role == "validator")
-        return results[final_node_id], self.execution_tree
+        validator_node = next(n for n in nodes if n.role == "validator")
+        final_answer_node_id = validator_node.deps[0]
+
+        return {
+    "answer": results[final_answer_node_id],
+    "validation": results[validator_node.id]
+}, self.execution_tree
 
     async def _run_worker(self, agent, node: DAGNode, query: str):
         # Adjusted to match common Agent return patterns

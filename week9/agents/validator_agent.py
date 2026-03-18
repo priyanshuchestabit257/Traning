@@ -9,6 +9,7 @@ class ValidatorAgent:
             system_message=(
                 "You validate answers. "
                 "Check for factual errors, logical mistakes, or missing steps."
+                "Write Rejected if answer is not correct."
             ),
             model_client=model_client
         )
